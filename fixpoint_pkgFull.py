@@ -14,7 +14,7 @@ class fixNum:
         '''Converts the internal representation to a float for calculation'''
         return self.a +(self.b/10**self.precision)
         
-    @staticmethod #Calling function directly from the class to create a new object
+
     def from_float(value,precision=2):
         #Creates a fixNum object from a float result
         a=int(value)
