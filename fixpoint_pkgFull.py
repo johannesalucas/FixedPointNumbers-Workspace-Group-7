@@ -1,22 +1,26 @@
-#fixpoint_pkgFull.py
+#fixnum_pkg.py
 import math
 class fixNum:
-    def __init__(self, a,b):
+    def __init__(self, a,b,precision=None): #Initialized precision to help deal with .05 and .5 error
         self.a=int(a)
         self.b=int(b)
         #Storing the length of b to help with decimal reconstruction
-        self.precision=len(str(b)) if b>0 else 2
+        if precision is None:
+            self.precision=len(str(b)) if b>0 else 2
+        else:
+            self.precision=precision #Sought help here
 
     def to_float(self):
         '''Converts the internal representation to a float for calculation'''
         return self.a +(self.b/10**self.precision)
-
+        
+    @staticmethod #Calling function directly from the class to create a new object
     def from_float(value,precision=2):
         #Creates a fixNum object from a float result
         a=int(value)
         ''' (round..., 7) acts as a safety net to clean tiny binary errors at the 7th decimal place(safe choice)'''
         b=int(math.floor(round((value-a)*(10**precision),7)))
-        return fixNum(a,b)
+        return fixNum(a,b,precision)
 
     def add(self,other): #Task 0, taking an extra step:
         val1=self.to_float()
@@ -75,7 +79,6 @@ class fixNum:
             exponent=n.to_float()
         else:
             exponent=n #Assume it is a positive/negative integer
-            
         result_val=self.to_float()**exponent
             
         #Return as a new fixed point using the precision:
