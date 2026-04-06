@@ -75,7 +75,8 @@ class fixNum:
             exponent=n.to_float()
         else:
             exponent=n #Assume it is a positive/negative integer
-            result_val=self.to_float()**exponent
+            
+        result_val=self.to_float()**exponent
             
         #Return as a new fixed point using the precision:
         return fixNum.from_float(result_val,self.precision)
