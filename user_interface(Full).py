@@ -1,4 +1,4 @@
-from fixpoint_pkg(Full) import fixNum
+from fixpoint_pkgFull import fixNum
 
 def main_menu():
     while True:
